@@ -30,6 +30,7 @@ This Web application is based on the Flask framework. It makes use of jQuery and
 
 ## How to use
 
+The underlying database needs to be downloaded from [IMDB's website](https://datasets.imdbws.com/).
 I have debugged and tested my application in CS50ide so I can't really explain how to run *MyMDB* other than by simply using the following command from the project directory:
 
 ```
