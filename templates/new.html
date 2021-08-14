@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Movie Search
+{% endblock %}
+
+{% block main %}
+    
+    <div>
+        <h2>Which Movie would You like to rate or add?</h2>
+        <div style="padding:5px;"></div>
+        <form action="/select" method="post">
+            <div class="form-group">
+                <input autocomplete="off" id="title" autofocus class="form-control" name="title" placeholder="Title" type="text">
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="year" placeholder="Year (optional)" type="number" style="width:210px" min="1970" max="2050">
+            </div>
+            <div class="form-group">
+                <input autocomplete="off" id="director" autofocus class="form-control" name="director" placeholder="Director (optional)" type="text">
+            </div>
+
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+    </div>
+
+{% endblock %}

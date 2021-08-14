@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- documentation at http://getbootstrap.com/docs/4.1/, alternative themes at https://bootswatch.com/ -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- https://www.iconarchive.com/show/android-lollipop-icons-by-dtafalonso/Movie-Studio-icon.html -->
+        <link href="/static/Dtafalonso-Android-Lollipop-Movie-Studio.ico" rel="icon">
+        
+        <!-- for delete icon on index page and social media buttons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        
+        
+
+        <title>MyMDb: {% block title %}{% endblock %}</title>
+
+    </head>
+
+
+    <body>
+        <nav class="navbar navbar-expand-md navbar-light bg-light border">
+            <a class="navbar-brand" href="/index"><span class="yellow">M</span><span class="yellow">y</span><span class="black">M</span><span class="black">D</span><span class="black">b</span></a>
+            <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+                {% if session.user_id %}
+                    <ul class="navbar-nav mr-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/new">Search</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/favourites">Favourites</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/watchlist">Watchlist</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/recommendations">Recommendations</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/randomizer">Randomizer</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/stats">Stats</a></li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/pw">Change Password</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    </ul>
+                {% else %}
+                    <ul class="navbar-nav ml-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                    </ul>
+                {% endif %}
+            </div>
+        </nav>
+        <div class="image">
+        
+        
+      <!--<div class="blurry">-->
+            <div id="content" class="content">
+              {% if get_flashed_messages() %}
+                  <header>
+                      <div id="alert" class="alert alert-primary border text-center" role="alert">
+                          {{ get_flashed_messages() | join(" ") }}
+                      </div>
+                  </header>
+              {% endif %}
+                <main class="container p-5">
+                    {% block main %}{% endblock %}
+                </main>
+                <p style:"padding:30px;"></p>
+            </div>
+
+        <!--</div>-->
+    <!--</div>-->
+    </div>
+    </body>
+    
+    <!-- Footer -->
+    <footer class="bg-light text-center text-lg-start" style="background-color: lightyellow;">
+      <!-- Grid container -->
+      <div class="container p-4">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase"></h5>
+            <p>Information courtesy of <a class="tiptext" href="https://www.imdb.com/">IMDb<iframe class="description" src="https://www.imdb.com/"></iframe></a>.<br/> Used with permission. View 
+            <a class="tiptext" href="https://www.imdb.com/conditions">IMDb’s Terms of Use</a>.</p>
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-youtube"></a>
+          </div>
+          <!--Grid column-->
+    
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Others</h5>
+    
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="#!" class="text-dark">Downloads</a>
+              </li>
+              <li>
+                <a href="#!" class="text-dark">Projects</a>
+              </li>
+              <li>
+                <a href="#!" class="text-dark">Academia</a>
+              </li>
+              <li>
+                <a href="#!" class="text-dark">Websites</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+    
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-0">Community</h5>
+    
+            <ul class="list-unstyled">
+              <li>
+                <a href="#!" class="text-dark">Report Error</a>
+              </li>
+              <li>
+                <a href="#!" class="text-dark">Forum</a>
+              </li>
+              <li>
+                <a href="#!" class="text-dark">About</a>
+              </li>
+              <li>
+                <a href="#!" class="text-dark">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Grid container -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: black; color:white;">
+        © 2020 Copyright:
+        <a style="color:white;" href="https://mymdb.com/">mymdb.com</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+    
+    <div class="popups">
+    
+    <!--Creates the popup body for rating-->
+    <div id="popup" class="popup-overlay">
+        <!--<div id="pop" class="popup-content">-->
+            <form class="myform" action="/select" method="post">
+                <p style="padding:10px;"></p>
+                <h2 id="h2">Please Rate This Movie</h2>
+                <h4 id="movie_id" style="visibility:hidden;"></h4>
+                <input class="form-control" id="rating" name="rating" placeholder="Rating" type="number" step="0.1" min="1" max="10">
+                <input class="form-control" name="notes" id="notes" type="text" placeholder="Notes (optional)" size="30" >
+                <p style="padding:20px;"></p>
+                <a class="btn btn-primary" href="javascript:void();" id=rate>Rate</a>
+            </form>
+            
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <!--Creates the popup body for notes-->
+      <div id="notespopup" class="popup-overlay">
+          <!--<div id="pop" class="popup-content">-->
+              <form class="myform" action="/select" method="post">
+                  <p style="padding:10px;"></p>
+                  <h2 id="h2">Your Notes for this Movie:</h2>
+                  <p style="padding:20px;"></p>
+                  <h4 id="notes"></h4>
+              </form>
+              
+              <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          <!--<button class="close">Close</button>-->
+        <!--</div>-->
+      </div>
+      
+      <!--Creates the popup body for confirming the clearing of all OR one data in movies-->
+      <div id="confirm" class="popup-overlay">
+          <!--<div id="pop" class="popup-content">-->
+              <form action="/clear" method="post">
+                  <p style="padding:10px;"></p>
+                  <h2 id="h2">Do you wish to proceed?</h2>
+                  <p style="padding:20px;"></p>
+                  <div class="form-group">
+                      <!--<input type="hidden" name="clearing" value="movies">-->
+                      <input type="hidden" name="amount" value="all">
+                  </div>
+                  <button class="btn btn-primary" type="submit">Yes</button>
+              </form>
+              <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+      </div>
+    </div>
+    <script src="static/jquery-3.5.1.js"></script>
+    <script src="static/form.js"></script>
+    <script type=text/javascript>
+      $SCRIPT_ROOT = "";
+    </script>
+    
+</html>

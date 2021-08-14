@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Watchlist
+{% endblock %}
+
+{% block main %}
+    {% if rows|length == 0 %}
+        <div>
+            <h2>No Movies in Your Watchlist</h2>
+            <a href="/new">Add to watchlist</a>
+        <div style="padding:35px;"></div>
+    {% endif %}
+    {% if rows|length != 0 %}
+    <div>
+
+
+        <h2>Your Watchlist</h2>
+        <div style="padding:5px;"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="sort">Title<i class="fa fa-fw fa-sort"></th>
+                    <th class="sort">Year<i class="fa fa-fw fa-sort"></th>
+                    <th class="sort">Director<i class="fa fa-fw fa-sort"></th>
+                    <th class="sort">IMDb<i class="fa fa-fw fa-sort"></th>
+                    <th width="0"></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for row in rows %}
+                    <!--{% set counter = ( counter | default(0) ) + 1 %}-->
+                    {% set counter = row["movie_id"] %}
+                    {% set link = counter|string %}
+
+                    <tr>
+                        <td>
+                            <button class="fa fa-minus-circle" style="font-size:15px;color:red" name="{{ counter }}wl"></button>
+                        </td>
+                        {% if (link|length == 7 or link|length == 8) %}
+                        <td class="crop"><a class="tiptext" href="https://www.imdb.com/title/tt{{ counter }}/">{{ row["title"] }}</a></td>
+                        {% endif %}
+                        {% if link|length == 6 %}
+                        <td class="crop"><a class="tiptext" href="https://www.imdb.com/title/tt0{{ counter }}/">{{ row["title"] }}</a></td>
+                        {% endif %}
+                        {% if link|length == 5 %}
+                        <td class="crop"><a class="tiptext" href="https://www.imdb.com/title/tt00{{ counter }}/">{{ row["title"] }}</a></td>
+                        {% endif %}
+                        <td>{{ row["year"] }}</td>
+                        <td>{{ row["name"] }}</td>
+                        <td>{{ row["rating"] }}</td>
+                        <td>{{ row["movies.id"] }}</td>
+                        <td>
+                            <button class="btn btn-primary" href="javascript:void();" id="{{ counter }}" name="ratepopup">Rate</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+        <table class="table table-striped">
+        <tfoot>
+            <!--<td colspan="6"></td>-->
+            <td style="text-align:right;"><button class="btn btn-primary clearer" id="clear" name="allwl">Clear All</button></td>
+        </tfoot>
+        </table>
+        <!--Creates the popup body for rating-->
+        <!--<div id="popup" class="popup-overlay">-->
+            <!--<div id="pop" class="popup-content">-->
+        <!--        <form class="myform" action="/select" method="post">-->
+        <!--            <p style="padding:10px;"></p>-->
+        <!--            <h2 id="h2">Please Rate This Movie</h2>-->
+        <!--            <h4 id="movie_id" style="visibility:hidden;"></h4>-->
+        <!--            <input class="form-control" style="visibility:hidden; width:0px;" name="oldnotes" id="oldnotes" type="text">-->
+        <!--            <input class="form-control" id="rating" name="rating" placeholder="Rating" type="number" step="0.1" min="1" max="10">-->
+        <!--            <input class="form-control" name="notes" id="notes" type="text" placeholder="Notes (optional)" size="30" >-->
+        <!--            <p style="padding:20px;"></p>-->
+        <!--            <a class="btn btn-primary" href="javascript:void();" id=rate>Rate</a>-->
+        <!--        </form>-->
+
+        <!--    <button type="button" class="close" aria-label="Close">-->
+        <!--      <span aria-hidden="true">&times;</span>-->
+        <!--    </button>-->
+          <!--</div>-->
+        <!--</div>-->
+
+
+        <!--Creates the popup body for confirming the clearing of all OR one data in watchlist-->
+        <!--<div id="confirm" class="popup-overlay">-->
+            <!--<div id="pop" class="popup-content">-->
+        <!--        <form action="/clear" method="post">-->
+        <!--            <p style="padding:10px;"></p>-->
+        <!--            <h2 id="h2">Do you wish to proceed?</h2>-->
+        <!--            <p style="padding:20px;"></p>-->
+        <!--            <div class="form-group">-->
+        <!--                <input type="hidden" name="clearing" value="watchlist">-->
+        <!--                <input type="hidden" name="amount" value="all">-->
+        <!--            </div>-->
+        <!--            <button class="btn btn-primary" type="submit">Yes</button>-->
+        <!--        </form>-->
+        <!--    <button type="button" class="close" aria-label="Close">-->
+        <!--      <span aria-hidden="true">&times;</span>-->
+        <!--    </button>-->
+          <!--</div>-->
+        <!--</div>-->
+
+    {% endif %}
+{% endblock %}

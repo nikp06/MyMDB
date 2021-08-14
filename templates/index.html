@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your Movies
+{% endblock %}
+
+{% block main %}
+    {% if rows|length == 0 %}
+        <div>
+            <h2>No Movies in Your Database yet</h2>
+            <a href="/new">Rate a Movie</a>
+        <div style="padding:35px;"></div>
+    {% endif %}
+    {% if rows|length != 0 %}
+    <div>
+        <h2>Your Movie Database</h2>
+        <div style="padding:5px;"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="sort">Title<i class="fa fa-fw fa-sort"></th>
+                    <th class="sort">Year<i class="fa fa-fw fa-sort"></th>
+                    <th class="sort">Rated on<i class="fa fa-fw fa-sort"></th>
+                    <th class="sort">My Rating<i class="fa fa-fw fa-sort"></i></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                {% set counter = row["movie_id"] %}
+                {% set notes = row["notes"] %}
+                {% set link = counter|string %}
+                <tr>
+                    <td>
+                        <button class="fa fa-minus-circle" style="font-size:15px;color:red;" name="{{ counter }}mv"></button>
+                    </td>
+                    {% if (link|length == 7 or link|length == 8) %}
+                    <td class="crop"><a class="tiptext" href="https://www.imdb.com/title/tt{{ counter }}/">{{ row["title"] }}</a></td>
+                    {% endif %}
+                    {% if link|length == 6 %}
+                    <td class="crop"><a class="tiptext" href="https://www.imdb.com/title/tt0{{ counter }}/">{{ row["title"] }}</a></td>
+                    {% endif %}
+                    {% if link|length == 5 %}
+                    <td class="crop"><a class="tiptext" href="https://www.imdb.com/title/tt00{{ counter }}/">{{ row["title"] }}</a></td>
+                    {% endif %}
+                    <td>{{ row["year"] }}</td>
+                    <td>{{ row["day"] }}</td>
+                    <td name="{{ counter }}">{{ row["user_rating"] }}</td>
+                    <td>
+                        <button class="btn btn-primary" href="javascript:void();" id="{{ notes }}" name="notespopup">Notes</a></button>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" href="javascript:void();" id="{{ counter }}" name="ratepopup">Update</a></button>
+                    </td>
+                    <!--<th>{{ row["notes"] }}</th>-->
+                </tr>
+                {% endfor %}
+                <!--<tr>-->
+                <!--    <th>CASH</th>-->
+                <!--    <td colspan="3"></td>-->
+                <!--    <th>{{ cash }}</th>-->
+                <!--</tr>-->
+            </tbody>
+        </table>
+        <table class="table table-striped">
+        <tfoot>
+            <!--<td colspan="6"></td>-->
+            <td style="text-align:right;"><button class="btn btn-primary clearer" id="clear" name="allmv">Clear All</button></td>
+        </tfoot>
+        </table>
+    </div>
+    {% endif %}
+{% endblock %}

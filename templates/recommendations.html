@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Recommendations
+{% endblock %}
+
+{% block main %}
+    {% block content %}
+    {% if random|length == 0 %}
+        <div>
+            <h2>No Recommendations possible yet</h2>
+            <a href="/new">Add to Database</a> or 
+            <a href="/randomizer">Get a Random Movie</a>
+    {% endif %}
+    {% if random|length != 0 %}
+    <div><h2>Recommendations based on Directors        <button class="btn btn-primary"><a style="color:white;" href="/recommendations">Shuffle</a></button></h2></div>
+        <div style="padding:5px;"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <!--<th>ID</th>-->
+                    <th>Title</th>
+                    <th>Year</th>
+                    <th>Director</th>
+                    <th>IMDb</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for rand in random %}
+            {% set counter = rand["movie_id"] %}
+            {% set link = counter|string %}
+                <tr>
+                    <!--<th name="movie_id">{{ rand["movie_id"] }}</th>-->
+                    {% if (link|length == 7 or link|length == 8) %}
+                    <th><a class="tiptext" href="https://www.imdb.com/title/tt{{ counter }}/">{{ rand["title"] }}</a></th>
+                    {% endif %}
+                    {% if link|length == 6 %}
+                    <th><a class="tiptext" href="https://www.imdb.com/title/tt0{{ counter }}/">{{ rand["title"] }}</a></th>
+                    {% endif %}
+                    {% if link|length == 5 %}
+                    <th><a class="tiptext" href="https://www.imdb.com/title/tt00{{ counter }}/">{{ rand["title"] }}</a></th>
+                    {% endif %}
+                    <th>{{ rand["year"] }}</th>
+                    <th>{{ rand["name"] }}</th>
+                    <th>{{ rand["rating"] }}</th>
+                    <td>
+                        <button class="btn btn-primary" href="javascript:void();" id="{{ counter }}" name="ratepopup">Rate</a></button>
+                    </td>
+                    <th><button class="btn btn-primary" href="javascript:void();" id="wl{{ rand['movie_id'] }}" name="addwl">+ Watchlist</button></th>
+                    <!--<th><a class="btn btn-primary" href=# id="{{ counter }}">+ Watchlist</a></th>-->
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div style="padding:35px;"></div>
+        
+    <div><h2>Recommendations based on Stars        <button class="btn btn-primary"><a style="color:white;" href="/recommendations">Shuffle</a></button></h2></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <!--<th>ID</th>-->
+                    <th>Title</th>
+                    <th>Year</th>
+                    <th>Star</th>
+                    <th>IMDb</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for rand in random2 %}
+            {% set counter = rand["movie_id"] %}
+            {% set link = counter|string %}
+                <tr>
+                    {% if (link|length == 7 or link|length == 8) %}
+                    <th><a class="tiptext" href="https://www.imdb.com/title/tt{{ counter }}/">{{ rand["title"] }}</a></th>
+                    {% endif %}
+                    {% if link|length == 6 %}
+                    <th><a class="tiptext" href="https://www.imdb.com/title/tt0{{ counter }}/">{{ rand["title"] }}</a></th>
+                    {% endif %}
+                    {% if link|length == 5 %}
+                    <th><a class="tiptext" href="https://www.imdb.com/title/tt00{{ counter }}/">{{ rand["title"] }}</a></th>
+                    {% endif %}
+                    <th>{{ rand["year"] }}</th>
+                    <th>{{ rand["name"] }}</th>
+                    <th>{{ rand["rating"] }}</th>
+                    <td>
+                        <button class="btn btn-primary" href="javascript:void();" id="{{ counter }}" name="ratepopup">Rate</a></button>
+                    </td>
+                    <th><button class="btn btn-primary" href="javascript:void();" id="wl{{ rand['movie_id'] }}" name="addwl">+ Watchlist</button></th>
+                    <!--<th><a class="btn btn-primary" href=# id="{{ counter }}">+ Watchlist</a></th>-->
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        
+        <div style="padding:35px;"></div>
+        
+        <form action="/recommendations" method="post">
+            <div class="form-group">
+                <input class="form-control" name="number" placeholder="Entries" type="number" min="0" max="10">
+                <button class="btn btn-primary" type="submit">Change Movie Entries</button>
+            </div>
+        </form>
+    {% endif %}
+    {% endblock content %}
+{% endblock %}

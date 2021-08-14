@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Favourites
+{% endblock %}
+
+{% block main %}
+    {% block content %}
+        {% if movies|length == 0 %}
+            <div>
+                <h2>No Movies rated yet</h2>
+                <a href="/new">Rate a Movie</a>
+            <div style="padding:35px;"></div>
+        {% endif %}
+        {% if movies|length != 0 %}
+        <div>
+            <h2>Your Top {{ number }} Movies</h2>
+            <div style="padding:5px;"></div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="sort">Title<i class="fa fa-fw fa-sort"></th>
+                        <th class="sort">Year<i class="fa fa-fw fa-sort"></th>
+                        <th class="sort">Director<i class="fa fa-fw fa-sort"></th>
+                        <th class="sort">IMDb Rating<i class="fa fa-fw fa-sort"></th>
+                        <th class="sort">My Rating<i class="fa fa-fw fa-sort"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set count = [1] %}
+                    {% for movie in movies %}
+                    {% set counter = movie["movie_id"] %}
+                    {% set link = counter|string %}
+                    <tr>
+                        <td style="font-weight:bold;">{{ count[0] }}.</td>
+                        {% if (link|length == 7 or link|length == 8) %}
+                        <td class="crop"><a class="tiptext" href="https://www.imdb.com/title/tt{{ counter }}/">{{ movie["title"] }}</a></td>
+                        {% endif %}
+                        {% if link|length == 6 %}
+                        <td class="crop"><a class="tiptext" href="https://www.imdb.com/title/tt0{{ counter }}/">{{ movie["title"] }}</a></td>
+                        {% endif %}
+                        {% if link|length == 5 %}
+                        <td class="crop"><a class="tiptext" href="https://www.imdb.com/title/tt00{{ counter }}/">{{ movie["title"] }}</a></td>
+                        {% endif %}
+                        <td>{{ movie["year"] }}</td>
+                        <td>{{ movie["name"] }}</td>
+                        <td>{{ movie["rating"] }}</td>
+                        <td>{{ movie["user_rating"] }}</td>
+                    </tr>
+                    {% if count.append(count.pop() + 1) %}{% endif %} {# increment count by 1 #}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!--<div>-->
+        <form action="/favourites" method="post">
+            <div class="form-group">
+                <input class="form-control" name="number" placeholder="Entries" type="number" min="0" max="100">
+                <button class="btn btn-primary" type="submit">Change Movie Entries</button>
+            </div>
+        </form>
+        {% endif %}
+    {% endblock content %}
+{% endblock %}

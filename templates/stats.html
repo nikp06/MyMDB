@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Stats
+{% endblock %}
+
+{% block main %}
+    
+    <div>
+        {% if rows != 0 %}
+        {% for row in rows %}
+        <div>
+            {% if (star|length != 0) %}
+            <h2>{{ star }} starred in {{ row["COUNT"] }} movies and has an average Rating of {{ (row["AVG"])|round(2) }} on IMDb.</h2>
+            {% endif %}
+            {% if (director|length != 0) %}
+            <h2>{{ director }} directed {{ row["COUNT"] }} movies and achieved an average Rating of {{ (row["AVG"])|round(2) }} on IMDb.</h2>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <div style="padding:35px;"></div>
+        {% endif %}
+        
+        <h2>Get Average IMDb Rating from:</h2>
+        <div style="padding:5px;"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Director</th>
+                    <th>Star</th>
+                </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    <form action="/stats" method="post">
+                        <div class="form-group">
+                            <input autocomplete="off" autofocus class="form-control" name="director" placeholder="Name of Director" type="text">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Get Average</button>
+                    </form>
+                </th>
+                <th>
+                    <form action="/stats" method="post">
+                        <div class="form-group">
+                            <input autocomplete="off" autofocus class="form-control" name="star" placeholder="Name of Star" type="text">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Get Average</button>
+                    </form>
+                </th>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+                
+                
+    <!--    <form action="/select" method="post">-->
+    <!--        <div class="form-group">-->
+    <!--            <input autocomplete="off" id="title" autofocus class="form-control" name="title" placeholder="Title" type="text">-->
+    <!--        </div>-->
+    <!--        <div class="form-group">-->
+    <!--            <input class="form-control" name="year" placeholder="Year (optional)" type="number" style="width:210px" min="1970" max="2050">-->
+    <!--        </div>-->
+    <!--        <div class="form-group">-->
+    <!--            <input autocomplete="off" id="director" autofocus class="form-control" name="director" placeholder="Director (optional)" type="text">-->
+    <!--        </div>-->
+
+    <!--        <button class="btn btn-primary" type="submit">Search</button>-->
+    <!--    </form>-->
+    <!---->
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <div>
+        {% if random != 0 %}
+        {% set method = method %}
+        {% set query = query %}
+        <div>
+            <h2>Your Random Movie:          <button class="btn btn-primary" id="{{ method }}" name="shuffle">Shuffle</button></h2>
+            <div style="padding:5px;"></div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <!--<th style="display:none;">ID</th>-->
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>IMDb Rating</th>
+                        <th>Based on</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <th colspan="5"></th>
+                    <th></th>
+                </tfoot>
+                <tbody>
+                    {% for rand in random %}
+                    {% set counter = rand["movie_id"] %}
+                    {% set link = counter|string %}
+                    <tr>
+                        <!--<th style="display:none;" name=a>{{ rand["movie_id"] }}</th>-->
+                        <!--<th name=title>{{ rand["title"] }}</th>-->
+                        {% if (link|length == 7 or link|length == 8) %}
+                        <th><a class="tiptext" name=title href="https://www.imdb.com/title/tt{{ counter }}/">{{ rand["title"] }}</a></th>
+                        {% endif %}
+                        {% if link|length == 6 %}
+                        <th><a class="tiptext" name=title href="https://www.imdb.com/title/tt0{{ counter }}/">{{ rand["title"] }}</a></th>
+                        {% endif %}
+                        {% if link|length == 5 %}
+                        <th><a class="tiptext" name=title href="https://www.imdb.com/title/tt00{{ counter }}/">{{ rand["title"] }}</a></th>
+                        {% endif %}
+                        <th name=year>{{ rand["year"] }}</th>
+                        <th name=rating>{{ rand["rating"] }}</th>
+                        <th id=query name="{{ query }}">{{ rand["name"] }}</th>
+                        <th><button class="btn btn-primary" href="javascript:void();" id="wl{{ rand['movie_id'] }}" name="addwl">+ Watchlist</button></th>
+                        
+                        <!--<a class="btn btn-primary" href=# id=calculate>+ Watchlist</a>-->
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div style="padding:35px;"></div>
+        {% endif %}
+        <h2>Randomize a Movie by</h2>
+        <div style="padding:5px;"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Star</th>
+                    <th>Director</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>
+                        <form action="/randomizer" method="post">
+                            <div class="form-group">
+                                <input autocomplete="off" autofocus class="form-control" id="randyear" name="randomyear" placeholder="Year" type="text">
+                            </div>
+                            <button id="randomize" class="btn btn-primary" type="submit">Randomize</button>
+                        </form>
+                    </th>
+                    <th>
+                        <form action="/randomizer" method="post">
+                            <div class="form-group">
+                                <input autocomplete="off" autofocus class="form-control" name="randomstar" placeholder="Name of Star" type="text">
+                            </div>
+                            <button class="btn btn-primary" type="submit">Randomize</button>
+                        </form>
+                    </th>
+                    <th>
+                        <form action="/randomizer" method="post">
+                            <div class="form-group">
+                                <input autocomplete="off" autofocus class="form-control" name="randomdirector" placeholder="Name of Director" type="text">
+                            </div>
+                            <button class="btn btn-primary" type="submit">Randomize</button>
+                        </form>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

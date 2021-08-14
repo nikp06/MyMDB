@@ -1,0 +1,235 @@
+.image {
+    /*min-height: 100vh;*/
+    background-image: url("/static/bgbw.jpg");
+    background-size: 1439px 2015px;
+    background-repeat: repeat-y;
+    /*padding: 30px;*/
+}
+
+body {
+  margin: 0;
+}
+
+.content {
+  /*box-sizing: border-box;*/
+  background: white;
+  opacity: 0.9;
+  /*padding: 15px;*/
+  border-radius: 3px;
+  width: 80%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+nav {
+    opacity:1;
+}
+
+nav .navbar-brand
+{
+    /* size for brand */
+    font-size: xx-large;
+}
+nav .navbar-brand:hover {
+  background-color: lightgrey;
+  color: white;
+}
+
+/* colors for brand */
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+
+.form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+table tfoot
+{
+    /* boldface tables' footers */
+    font-weight: bold;
+}
+
+table tbody th
+{
+    /* boldface tables' footers */
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+tr td
+{
+  vertical-align:middle;
+}
+
+.sort
+{
+  min-width:80px;
+}
+
+/* bg color of flash messages (yellow) */
+#alert {
+    background: #FFFFE0; /*#F0E68C;*/
+    color: black;
+    opacity:0.95;
+    width:100%;
+    margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+html {
+  font-family: "Helvetica Neue", sans-serif;
+  width: 100%;
+  color: #666666;
+  text-align: center;
+}
+
+
+.popup-overlay {
+  /*Hides pop-up when there is no "active" class*/
+  display:none;
+  visibility: hidden;
+  position: absolute;
+  background: #ffffff;
+  border: 3px solid #666666;
+  width: 40%;
+  height: 50%;
+  left: 25%;
+}
+
+.popup-overlay.active {
+  /*displays pop-up when "active" class is present*/
+  display:block;
+  visibility: visible;
+  text-align: center;
+}
+
+.fa-minus-circle {
+  vertical-align: middle;
+  display: inherit;
+  position:relative;
+}
+
+button {
+  display:table-cell;
+  /*display: table-cell;*/
+  /*display: inline-block;*/
+  vertical-align: middle;
+  border-radius: 30px;
+  position:relative;
+  /*margin: .20rem;*/
+  font-size: 1rem;
+  color: #666666;
+  background: #ffffff;
+  border: 1px solid #666666;
+}
+
+button:hover {
+  border: 1px solid #666666;
+  background: #666666;
+  color: #ffffff;
+}
+
+#notespopup {
+  position:relative;
+}
+
+.blurry {
+  /* Add the blur effect */
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+}
+  
+.close {
+  position:absolute;
+  top:0;
+  right:0;
+}
+
+
+/* Style all font awesome icons */
+a.fa {
+  /*padding: 20px;*/
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+}
+
+/* Add a hover effect if you want */
+.fa.fa-facebook:hover {
+  opacity: 0.7;
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+/* Twitter */
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-fw {
+  opacity: 0.7;
+}
+
+
+.fa-fw:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+
+.tiptext {
+    color:#069;
+    cursor:pointer;
+}
+.description {
+    display:none;
+    position:absolute;
+    border:1px solid #000;
+    width:400px;
+    height:400px;
+}
+
+.crop {width:280px;overflow:hidden;height:0px;line-height:20px;}
