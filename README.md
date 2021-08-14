@@ -1,7 +1,7 @@
 # MyMDB
 MyMDB - My Movie Database - is a web application for managing movie ratings/wishlists/thougths and getting inspiration for new movies along the way
 I explain what this web application allows one to do in [this video](https://youtu.be/81mJzrJcSQ4).
-[![thumbnail3](https://user-images.githubusercontent.com/64498892/129455280-10303185-8fc8-406c-ac94-c21702bcdcb7.jpg)](https://youtu.be/81mJzrJcSQ4)
+[![thumb](https://user-images.githubusercontent.com/64498892/129455313-65a9fce7-fd36-4f7a-93d7-7afff6c0b023.jpg)](https://youtu.be/81mJzrJcSQ4)
 
 
 ## About MyMDB
