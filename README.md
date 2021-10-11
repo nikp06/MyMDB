@@ -27,6 +27,7 @@ With *MyMDB* you explore IMDb's world of movies with fun and create your persona
 ## Description
 
 This Web application is based on the Flask framework. It makes use of jQuery and JavaScript to dynamically alter the DOM and communicate with the backend where the [cs50 python lib](https://github.com/cs50/python-cs50) is used for working with the database. It can be downloaded from github or replaced with something like SQLite. CSS and the Bootstrap library are used for the styling of the page. 
+Note, that this web-app is not optimized for different devices as this was only a smaller scale project I did for the completion of a programming course.
 
 ## How to use
 
